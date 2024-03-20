@@ -1,0 +1,75 @@
+@import url("https://fonts.googleapis.com/css2?family=Madimi+One&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lilita+One&family=Madimi+One&display=swap");
+
+.product-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}
+
+.product-item {
+  background-color: #d9f7e0;
+  border: 1px solid #4caf50;
+  border-radius: 15px;
+  padding: 20px;
+  text-align: center;
+  transition: transform 0.3s, box-shadow 0.3s;
+  font-family: "Lilita One", sans-serif;
+}
+
+.product-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+.product-item h3 {
+  margin-bottom: 10px;
+}
+
+button {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  font-family: "Madimi One", sans-serif;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+.product-item.sold-out {
+  opacity: 0.5;
+  position: relative;
+}
+
+.sold-out-sticker {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: red;
+  color: white;
+  padding: 5px;
+  font-weight: bold;
+  border-radius: 10px;
+}
+.product-item img {
+  width: 200px; /* 이미지의 너비를 200px로 고정 */
+  height: 200px; /* 이미지의 높이를 200px로 고정 */
+  object-fit: cover; /* 이미지를 요소의 크기에 맞추기 위해 가로세로 비율을 유지한 채로 크기 조정 */
+}
+button,
+.product-item button {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 20px; /* 버튼의 border-radius를 조정하여 둥글게 만듭니다 */
+  cursor: pointer;
+  transition: background-color 0.3s;
+  font-family: "Madimi One", sans-serif;
+}
