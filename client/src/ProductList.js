@@ -10,7 +10,7 @@ function ProductList({ blackFriday }) {
   }, []);
 
   const fetchProducts = () => {
-    fetch("http://localhost:8088")
+    fetch("http://211.183.3.100:8088")
       .then((response) => response.json())
       .then((data) => setProducts(data))
       .catch((error) => console.error("데이터 가져오기 실패:", error));
@@ -27,7 +27,7 @@ function ProductList({ blackFriday }) {
     const confirmed = window.confirm(`'${productName}'을(를) 구매하시겠습니까?`);
     if (confirmed) {
       try {
-        const response = await fetch(`http://localhost:8088/buy/${productId}`, {
+        const response = await fetch(`http://211.183.3.100:8088/buy/${productId}`, {
           method: "POST",
         });
         if (response.ok) {
