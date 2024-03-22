@@ -1,7 +1,8 @@
+// ProductList.js
 import React, { useState, useEffect } from "react";
 import "./ProductList.css";
 
-function ProductList() {
+function ProductList({ blackFriday }) {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
@@ -23,9 +24,7 @@ function ProductList() {
   };
 
   const handlePurchase = async (productName, productId) => {
-    const confirmed = window.confirm(
-      `'${productName}'을(를) 구매하시겠습니까?`
-    );
+    const confirmed = window.confirm(`'${productName}'을(를) 구매하시겠습니까?`);
     if (confirmed) {
       try {
         const response = await fetch(`http://localhost:8088/buy/${productId}`, {
@@ -33,7 +32,6 @@ function ProductList() {
         });
         if (response.ok) {
           alert(`${productName}을(를) 구매했습니다.`);
-          // 상품 구매 후 상품 목록 다시 가져오기
           fetchProducts();
         } else {
           throw new Error("제품 구매에 실패했습니다.");
@@ -57,7 +55,19 @@ function ProductList() {
           )}
           <img src={imagePaths[product.imgID]} alt={product.name} />
           <h3>{product.name}</h3>
-          <p>${product.price}</p>
+          <p>
+            {blackFriday ? (
+              <>
+                <del>${product.price.toFixed(0)}</del>{" "}
+                <span className="text-danger fw-bold">
+                  ${(product.price / 2).toFixed(0)}
+                </span>{" "}
+                <span className="badge bg-danger">50% Sale 중</span>
+              </>
+            ) : (
+              `$${product.price.toFixed(2)}`
+            )}
+          </p>
           {product.quantity === 0 ? (
             <p>Sold Out</p>
           ) : (
