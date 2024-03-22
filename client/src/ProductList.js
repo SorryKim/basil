@@ -24,12 +24,17 @@ function ProductList({ blackFriday }) {
   };
 
   const handlePurchase = async (productName, productId) => {
-    const confirmed = window.confirm(`'${productName}'을(를) 구매하시겠습니까?`);
+    const confirmed = window.confirm(
+      `'${productName}'을(를) 구매하시겠습니까?`
+    );
     if (confirmed) {
       try {
-        const response = await fetch(`http://211.183.3.101:8088/buy/${productId}`, {
-          method: "POST",
-        });
+        const response = await fetch(
+          `http://211.183.3.101:8088/buy/${productId}`,
+          {
+            method: "POST",
+          }
+        );
         if (response.ok) {
           alert(`${productName}을(를) 구매했습니다.`);
           fetchProducts();
