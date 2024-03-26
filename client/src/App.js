@@ -1,63 +1,58 @@
 import React, { useState } from "react";
-import { Navbar, Nav, Container, Spinner } from "react-bootstrap";
+import { Navbar, Nav, Container, Spinner, Card } from "react-bootstrap";
 import ProductList from "./ProductList";
 import "./App.css";
 
 function App() {
   const [loading, setLoading] = useState(false);
-  const blackFriday = true;
-  const handleLoadServer = () => {
-    setLoading(true);
+  const blackFriday = false; // 블랙프라이데이 여부
 
-    fetch("/load-server")
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Failed to load server");
-        }
-        console.log("Server loaded successfully");
-        setLoading(false);
-      })
-      .catch((error) => {
-        console.error("Error loading server:", error);
-        setLoading(false);
-      });
+  const handleLoadServer = async () => {
+    setLoading(true);
+    try {
+      const response = await fetch("/load-server");
+      if (!response.ok) {
+        throw new Error("Failed to load server");
+      }
+      console.log("Server loaded successfully");
+    } catch (error) {
+      console.error("Error loading server:", error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
     <>
-      <Navbar bg="warning" variant="light" expand="lg">
+      <Navbar variant="dark" expand="lg" className="navbar">
         <Container>
-          <Navbar.Brand href="#home">Basil Project</Navbar.Brand>
-          <Navbar.Toggle aria-controls="basic-navbar-nav" />
-          <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="ms-auto">
-              <Nav.Link href="/">Home</Nav.Link>
-              <Nav.Link href="/blackfriday">Black Friday</Nav.Link>
-            </Nav>
-          </Navbar.Collapse>
+          <h2>Basil Shop</h2>
         </Container>
       </Navbar>
-
-      <header className="py-3"></header>
-
-      <Container>
-        <div className="p-4 bg-light rounded-3 text-center">
-          <div className="m-4">
-            <h1 className="display-5 fw-bold">BASIL</h1>
-            <p className="fs-4">카카오클라우드스쿨 팀프로젝트 BASIL</p>
-            <button
-              className="btn btn-primary btn-lg"
-              onClick={handleLoadServer}
-            >
-              {loading ? (
-                <Spinner animation="border" role="status" />
-              ) : (
-                "서버에 부하주기"
-              )}
-            </button>
-          </div>
-        </div>
-      </Container>
+      <center>
+        <Container className="my-5">
+          <Card>
+            <Card.Body>
+              <div className="text-center mb-4">
+                <h1 className="display-5 fw-bold mb-3">Project Basil</h1>
+                <p className="fs-4">카카오 클라우드 스쿨 팀 프로젝트</p>
+              </div>
+              <div className="d-flex justify-content-center">
+                <button
+                  className="btn btn-primary btn-lg"
+                  onClick={handleLoadServer}
+                >
+                  {loading ? (
+                    <Spinner animation="border" role="status" />
+                  ) : (
+                    "서버에 부하주기"
+                  )}
+                </button>
+              </div>
+            </Card.Body>
+          </Card>
+        </Container>
+      </center>
 
       {blackFriday && (
         <center>
@@ -70,11 +65,9 @@ function App() {
         <ProductList blackFriday={false} />
       )}
 
-      <footer className="py-5 bg-dark">
+      <footer className="py-3">
         <Container>
-          <p className="m-0 text-center text-white">
-            Copyright &copy; SorryKim 2024
-          </p>
+          <p className="m-0 text-center">Copyright &copy; Nature Shop 2024</p>
         </Container>
       </footer>
     </>

@@ -45,19 +45,17 @@ app.post("/buy/:id", async (req, res) => {
     res.status(500).send("제품 구매에 실패했습니다.");
   }
 });
-
-app.get("/load-server", (req, res) => {
-  // 서버에 부하를 주는 작업 수행
-  // 예: 시간이 오래 걸리는 작업, 대용량 파일 다운로드 등
-  // CPU를 사용하는 작업을 수행
-  const iterations = 1000000000; // 작업 반복 횟수 설정
-
-  let result = 0;
-  for (let i = 0; i < iterations; i++) {
-    result += Math.sqrt(i); // 간단한 수학 계산 수행
+// 임의의 부하를 생성하는 함수
+function createLoad(duration) {
+  const start = Date.now();
+  while (Date.now() - start < duration) {
+    // 부하 생성 로직 (예: 무한 루프, 계산 등)
   }
-  console.log(result);
+}
 
-  // 응답 전송
+// 서버 부하 생성 라우트
+app.get("/load-server", (req, res) => {
+  // 부하 생성 (예: 5초 동안 부하 생성)
+  createLoad(5000);
   res.status(200).send("Server loaded successfully");
 });
