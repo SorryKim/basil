@@ -46,16 +46,27 @@ app.post("/buy/:id", async (req, res) => {
   }
 });
 // 임의의 부하를 생성하는 함수
-function createLoad(duration) {
+function createLoad(duration, cpuLoad) {
   const start = Date.now();
+  const arr = [];
+
   while (Date.now() - start < duration) {
-    // 부하 생성 로직 (예: 무한 루프, 계산 등)
+    // CPU 집약적인 작업 수행
+    for (let i = 0; i < cpuLoad; i++) {
+      for (let j = 0; j < 10000000; j++) {
+        arr.push(j * j * j);
+      }
+    }
   }
 }
 
 // 서버 부하 생성 라우트
 app.get("/load-server", (req, res) => {
-  // 부하 생성 (예: 5초 동안 부하 생성)
-  createLoad(5000);
+  const cpuLoad = req.query.cpuLoad || 100000; // CPU 부하 수준 (기본값: 100000)
+  const duration = req.query.duration || 60000; // 부하 생성 시간 (밀리초, 기본값: 60초)
+
+  // 부하 생성
+  createLoad(duration, cpuLoad);
+
   res.status(200).send("Server loaded successfully");
 });
