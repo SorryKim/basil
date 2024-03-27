@@ -25,7 +25,7 @@ body {
 
 .nav-link {
   color: #ffffff !important;
-  margin-left: 0.99rem; /* 메뉴 항목 사이의 간격 조정 */
+  margin-left: 1rem; /* 메뉴 항목 사이의 간격 조정 */
 }
 
 .container {
