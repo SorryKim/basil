@@ -13,6 +13,7 @@ jobs:
     
     steps:
     - uses: actions/checkout@v3
+    
     - name: Build Frontend Docker Image
       env:
         DOCKER_HUB_USERNAME: sorrykim
@@ -23,11 +24,17 @@ jobs:
         docker build -t sorrykim/basil:frontend .
         docker push sorrykim/basil:frontend
         
+    - name: Trigger Jenkins Pipeline
+      env:
+        JENKINS_WEBHOOK_URL: ${{ secrets.JENKINS_WEBHOOK_URL }}
+      run: curl -X POST $JENKINS_WEBHOOK_URL
+        
   build-backend:
     runs-on: ubuntu-latest
     
     steps:
     - uses: actions/checkout@v3
+    
     - name: Build Backend Docker Image
       env:
         DOCKER_HUB_USERNAME: sorrykim  
@@ -36,4 +43,8 @@ jobs:
         docker login -u $DOCKER_HUB_USERNAME -p $DOCKER_HUB_TOKEN
         cd server
         docker build -t sorrykim/basil:backend .
-        docker push sorrykim/basil:backend
+        
+    - name: Trigger Jenkins Pipeline
+      env:
+        JENKINS_WEBHOOK_URL: ${{ secrets.JENKINS_WEBHOOK_URL }}  
+      run: curl -X POST $JENKINS_WEBHOOK_URL
