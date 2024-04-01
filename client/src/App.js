@@ -26,7 +26,7 @@ function App() {
     <>
       <Navbar variant="dark" expand="lg" className="navbar">
         <Container>
-          <h2>Basil Shop</h2>
+          <h2>Basil Shop !!</h2>
         </Container>
       </Navbar>
       <center>
