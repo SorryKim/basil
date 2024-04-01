@@ -14,14 +14,9 @@ pipeline {
                     dockerImage = ''
                     kubectlCmd = "sudo kubectl -n ${KUBERNETES_NAMESPACE}"
 
-                    stage('Deploy Frontend') {
+                    stage('Deploy') {
                         dockerImage = DOCKER_IMAGE_FRONTEND
-                        sh "${kubectlCmd} set image deployment/basil-frontend basil-ctn-frontend=${dockerImage}"
-                    }
-
-                    stage('Deploy Backend') {
-                        dockerImage = DOCKER_IMAGE_BACKEND
-                        sh "${kubectlCmd} set image deployment/basil-backend basil-ctn-backend=${dockerImage}"
+                        sh "${kubectlCmd} apply -f /root/test.yaml"
                     }
                 }
             }
