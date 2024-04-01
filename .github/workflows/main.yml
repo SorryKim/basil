@@ -23,12 +23,7 @@ jobs:
         cd client
         docker build -t sorrykim/basil:frontend .
         docker push sorrykim/basil:frontend
-        
-    - name: Trigger Jenkins Pipeline
-      env:
-        JENKINS_WEBHOOK_URL: ${{ secrets.JENKINS_WEBHOOK_URL }}
-      run: curl -X POST $JENKINS_WEBHOOK_URL
-        
+            
   build-backend:
     runs-on: ubuntu-latest
     
@@ -43,8 +38,3 @@ jobs:
         docker login -u $DOCKER_HUB_USERNAME -p $DOCKER_HUB_TOKEN
         cd server
         docker build -t sorrykim/basil:backend .
-        
-    - name: Trigger Jenkins Pipeline
-      env:
-        JENKINS_WEBHOOK_URL: ${{ secrets.JENKINS_WEBHOOK_URL }}  
-      run: curl -X POST $JENKINS_WEBHOOK_URL
