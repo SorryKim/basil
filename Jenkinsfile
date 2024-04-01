@@ -16,12 +16,12 @@ pipeline {
 
                     stage('Deploy Frontend') {
                         dockerImage = DOCKER_IMAGE_FRONTEND
-                        sh "${kubectlCmd} set image deployment/frontend-deployment frontend=${dockerImage}"
+                        sh "${kubectlCmd} set image deployment/basil-frontend basil-ctn-frontend=${dockerImage}"
                     }
 
                     stage('Deploy Backend') {
                         dockerImage = DOCKER_IMAGE_BACKEND
-                        sh "${kubectlCmd} set image deployment/backend-deployment backend=${dockerImage}"
+                        sh "${kubectlCmd} set image deployment/basil-backend basil-ctn-backend=${dockerImage}"
                     }
                 }
             }
