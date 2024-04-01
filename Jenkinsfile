@@ -17,6 +17,8 @@ pipeline {
                     stage('Deploy') {
                         dockerImage = DOCKER_IMAGE_FRONTEND
                         sh "${kubectlCmd} apply -f /root/test.yaml"
+                        sh "${kubectlCmd} set image deployment/basil-backend basil-ctn-backend=basil:backend"
+                        sh "${kubectlCmd} set image deployment/basil-frontend basil-ctn-frontend=basil:frontend"
                     }
                 }
             }
