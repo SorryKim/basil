@@ -12,7 +12,7 @@ pipeline {
             steps {
                 script {
                     dockerImage = ''
-                    kubectlCmd = "kubectl -n ${KUBERNETES_NAMESPACE}"
+                    kubectlCmd = "sudo kubectl -n ${KUBERNETES_NAMESPACE}"
 
                     stage('Deploy Frontend') {
                         dockerImage = DOCKER_IMAGE_FRONTEND
