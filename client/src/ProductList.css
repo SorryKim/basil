@@ -57,11 +57,13 @@ button:hover {
   font-weight: bold;
   border-radius: 10px;
 }
+
 .product-item img {
   width: 200px; /* 이미지의 너비를 200px로 고정 */
   height: 200px; /* 이미지의 높이를 200px로 고정 */
   object-fit: cover; /* 이미지를 요소의 크기에 맞추기 위해 가로세로 비율을 유지한 채로 크기 조정 */
 }
+
 button,
 .product-item button {
   background-color: #4caf50;
@@ -72,4 +74,10 @@ button,
   cursor: pointer;
   transition: background-color 0.3s;
   font-family: "Madimi One", sans-serif;
+}
+
+/* 50% 세일 시 빨간색으로 표시 */
+.product-item .text-danger {
+  color: red;
+  font-weight: bold;
 }

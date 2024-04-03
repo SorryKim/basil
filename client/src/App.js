@@ -5,7 +5,7 @@ import "./App.css";
 
 function App() {
   const [loading, setLoading] = useState(false);
-  const blackFriday = false; // 블랙프라이데이 여부
+  const blackFriday = true; // 블랙프라이데이 여부
 
   const handleLoadServer = async () => {
     setLoading(true);
@@ -26,7 +26,7 @@ function App() {
     <>
       <Navbar variant="dark" expand="lg" className="navbar">
         <Container>
-          <h2>Basil Shop !!</h2>
+          <h2>Basil Shop</h2>
         </Container>
       </Navbar>
       <center>
@@ -56,7 +56,7 @@ function App() {
 
       {blackFriday && (
         <center>
-          <h2>BLACK FRIDAY !!</h2>
+          <h2>BLACK FRIDAY</h2>
         </center>
       )}
       {blackFriday ? (
