@@ -5,7 +5,7 @@ import "./App.css";
 
 function App() {
   const [loading, setLoading] = useState(false);
-  const blackFriday = true; // 블랙프라이데이 여부
+  const blackFriday = false; // 블랙프라이데이 여부
 
   const handleLoadServer = async () => {
     setLoading(true);
