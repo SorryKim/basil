@@ -77,7 +77,8 @@ button,
 }
 
 /* 50% 세일 시 빨간색으로 표시 */
-.product-item .text-danger {
-  color: red;
+.product-item .sale-badge {
+  color: white;
+  background-color: red;
   font-weight: bold;
 }

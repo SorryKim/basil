@@ -80,7 +80,7 @@ function ProductList({ blackFriday }) {
                 <span className="text-danger fw-bold">
                   ${(product.price / 2).toFixed(0)}
                 </span>{" "}
-                <span className="badge bg-danger">50% Sale 중</span>
+                <span className="sale-badge">50% Sale 중</span>
               </>
             ) : (
               `$${product.price.toFixed(2)}`
