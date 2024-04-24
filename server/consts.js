@@ -1,5 +1,5 @@
 module.exports={
-    DBHost:'db-kakao-basil.cduc6ke2u0gh.ap-northeast-1.rds.amazonaws.com',
+    DBHost:'db호스트',
     DBPort: 3306,
     DBUser: 'root',
     DBPass: 'test1234',
